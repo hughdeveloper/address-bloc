@@ -38,4 +38,28 @@ require_relative '../models/address_book'
        expect(new_entry.email).to eq('augusta.king@lovelace.com')
      end
    end
+
+   describe "#remove_entry" do
+     it "confirm that a single entry is removed" do
+      book = AddressBook.new
+
+      #we add 2 entries to the address book for this test. One will be the one that we delete while the other will be the one that should remain
+      book.add_entry('Jack Lovelace', '010.010.1815', 'augusta.luke@lovelace.com')
+
+      # here we set up what the second entry is. We set up varibales for things such as name becasue we will be calling it in both the add and then remove entry calls.
+      # we could have not set up the variables such as name and just pluged them into bot the remove and add however if we made a typo error the test could cause problems even if the method is correct
+      name = "Ada Lovelace"
+      phone_number = "010.012.1815"
+      email = "augusta.king@lovelace.com"
+      book.add_entry(name, phone_number, email)
+
+      expect(book.entries.size).to eq 2
+      book.remove_entry(name, phone_number, email)
+      expect(book.entries.size).to eq 1
+      expect(book.entries.first.name).to eq ("Jack Lovelace")
+     end
+   end
+
+
+
  end
