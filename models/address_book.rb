@@ -1,5 +1,7 @@
-# here we are telling ruby to load the library named entry.rb which is were we are pulling the entries from
 require_relative 'entry'
+# here we are telling ruby to load the library named entry.rb which is were we are pulling the entries from
+
+
 
    class AddressBook
      attr_reader :entries
