@@ -5,6 +5,8 @@ require_relative 'entry'
      attr_reader :entries
 
      def initialize
+       # this is an empty array that will take in the entry that is provided in entry.rb
+       # arrays can hold a goup of varibales in each of its index. Think of a array within another array
        @entries = []
      end
 
