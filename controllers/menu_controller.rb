@@ -1,4 +1,5 @@
 require_relative '../models/address_book'
+require 'pry-byebug'
 
 class MenuController
   attr_reader :address_book
@@ -8,6 +9,7 @@ class MenuController
   end
 
   def main_menu
+
     # here we display the main menu options to the command line
     p "Main Menu - #{address_book.entries.count} entries"
     p "1 - View all entries"
@@ -29,9 +31,13 @@ class MenuController
         main_menu
       when 2
         system "clear"
-        search_entries
+        create_entry
         main_menu
       when 3
+        system "clear"
+        read_csv
+        main_menu
+      when 4
         system "clear"
         read_csv
         main_menu
@@ -52,9 +58,10 @@ class MenuController
 
     # here we create the methods for the commands that will be called form the user
     def view_all_entries
+
       address_book.entries.each do |entry|
         system "clear"
-        p entry.to_s
+        puts entry.to_s
 
         entry_submenu(entry)
       end
@@ -73,13 +80,13 @@ class MenuController
       name = gets.chomp
       print "Phone number: "
       phone_number = gets.chomp
-      print "Email"
+      print "Email: "
       email = gets.chomp
 
       # add a new entry to the address book by calling the function add_entry that we created in address_book.rb
       address_book.add_entry(name, phone_number, email)
 
-      system clear
+      system "clear"
       p "New entry created"
     end
 
