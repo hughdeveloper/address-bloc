@@ -13,10 +13,11 @@ class MenuController
     # here we display the main menu options to the command line
     p "Main Menu - #{address_book.entries.count} entries"
     p "1 - View all entries"
-    p "2 - Create an entry"
-    p "3 - Search for an entry"
-    p "4 - Import entries from a CSV"
-    p "5 - Exit"
+    p "2 - View Entry Number n"
+    p "3 - Create an entry"
+    p "4 - Search for an entry"
+    p "5 - Import entries from a CSV"
+    p "6 - Exit"
     print "Enter your selection: "
     # we retrieve user input from thecommand line using gets reads the next line from standard input
     selection = gets.to_i
@@ -31,17 +32,21 @@ class MenuController
         main_menu
       when 2
         system "clear"
-        create_entry
+        view_entry_number
         main_menu
       when 3
         system "clear"
-        read_csv
+        create_entry
         main_menu
       when 4
         system "clear"
         read_csv
         main_menu
       when 5
+        system "clear"
+        read_csv
+        main_menu
+      when 6
         p "Good-bye!"
 
         # here we terminate the the program
@@ -68,6 +73,18 @@ class MenuController
 
         system "clear"
         p "End of entries"
+    end
+
+    def view_entry_number
+      system "clear"
+      print "Enter Entry Number: "
+      entry_number = gets.chomp
+      entry_number_i = entry_number.to_i
+      if entry_number_i.is_a?(Numeric) == true && entry_number_i != 0
+        p "this worked"
+      else
+        p "Input not valid. Please enter a number."
+      end
     end
 
     def create_entry
