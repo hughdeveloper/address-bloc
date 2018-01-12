@@ -1,9 +1,9 @@
 require_relative 'entry'
 # here we are telling ruby to load the library named entry.rb which is were we are pulling the entries from
+require "csv"
 
 
-
-   class AddressBook
+  class AddressBook
      attr_reader :entries
 
      def initialize
@@ -11,6 +11,19 @@ require_relative 'entry'
        # arrays can hold a goup of varibales in each of its index. Think of a array within another array
        @entries = []
      end
+
+     #The method starts by reading the file, using  File.read. The file will be in a CSV format. We use the CSV class to parse the file. The result of CSV.parse is an object of type CSV::Table.
+    def import_from_csv(file_name)
+       csv_text = File.read(file_name)
+       csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
+      # here we loop through the rows of the csv files and add them in the entry
+      # we also create a hash for each row
+      csv.each do |row|
+        row_hash = row.to_hash
+        add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
+      end
+    end
+
 
 
 
@@ -49,4 +62,4 @@ require_relative 'entry'
      # we insert a new entry into entries using the calculatec index
      entries.insert(index, Entry.new(name, phone_number, email))
    end
- end
+  end
