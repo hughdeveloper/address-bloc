@@ -140,7 +140,7 @@ class MenuController
      entry.phone_number = phone_number if !phone_number.empty?
      entry.email = email if !email.empty?
      system "clear"
-     
+
      puts "Updated entry:"
      puts entry
     end
@@ -168,12 +168,17 @@ class MenuController
 
     end
 
+    def nuke_entries
+      @address_book = AddressBook.new
+    end
+
     def entry_submenu(entry)
       # display the submenu options
       p "n - next entry"
       p "d - delete entry"
       p "e - edit this entry"
       p "m - return main menu"
+      p "nuke - to delete all entries"
 
       # chomp removes any trailing whitespce from the strong gets returns
       selection = gets.chomp
@@ -189,6 +194,10 @@ class MenuController
           entry_submenu(entry)
         when "m"
           system "clear"
+          main_menu
+        when "nuke"
+          system "clear"
+          nuke_entries
           main_menu
         else
           system "clear"
