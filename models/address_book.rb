@@ -74,7 +74,6 @@ require "csv"
    while lower <= upper
      mid = (lower + upper) /2
      mid_name = entries[mid].name
-
      # if the name is above the mid then we look there if the name is the mid entry then we found it if the name is below the mid then we look at the entries below
      if name == mid_name
        return entries[mid]
@@ -88,7 +87,18 @@ require "csv"
      return nil
    end
 
-
+   def iterative_search(input)
+     index = 0
+    for entry in entries
+     name = entries[index].name
+     if name == input
+       return entries[index]
+     elsif name != input
+       index += 1
+     end
+    end
+       return nil
+  end
 
 
 
