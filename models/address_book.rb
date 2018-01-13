@@ -62,4 +62,35 @@ require "csv"
      # we insert a new entry into entries using the calculatec index
      entries.insert(index, Entry.new(name, phone_number, email))
    end
+
+   #searches addressbook for a specific entry by name
+   def binary_search(name)
+
+     # the index of the leftmost item in the array is lower and upp is the index rightmost
+     lower = 0
+     upper = entries.length - 1
+
+     # we loop while our lower index is less than or equal to our upper index
+   while lower <= upper
+     mid = (lower + upper) /2
+     mid_name = entries[mid].name
+
+     # if the name is above the mid then we look there if the name is the mid entry then we found it if the name is below the mid then we look at the entries below
+     if name == mid_name
+       return entries[mid]
+     elsif name < mid_name
+       upper = mid - 1
+     elsif name > mid_name
+       lower = mid + 1
+     end
+    end
+    # if no match is found we return nil
+     return nil
+   end
+
+
+
+
+
+
   end
