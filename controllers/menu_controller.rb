@@ -140,7 +140,7 @@ class MenuController
      entry.phone_number = phone_number if !phone_number.empty?
      entry.email = email if !email.empty?
      system "clear"
-     # #6
+     
      puts "Updated entry:"
      puts entry
     end
